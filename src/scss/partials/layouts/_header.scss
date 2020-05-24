@@ -1,0 +1,15 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    // align-items: center;
+    padding: 1rem 1rem;
+    background-color: #283e4a;
+    .logo {
+        width: 9rem;
+        height: 3rem;
+    }
+}
