@@ -12,4 +12,6 @@ header {
         width: 9rem;
         height: 3rem;
     }
+    z-index: 1;
+    /* used to prevent scale property in userCard to overlap header */
 }

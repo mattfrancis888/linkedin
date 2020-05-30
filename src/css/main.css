@@ -367,8 +367,9 @@ body {
 }
 .userCard:hover {
   cursor: pointer;
-  background-color: red;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease-in-out, opacity 0.1s ease-in;
+  transform: scale(1.1);
 }
 .userCard .userImg {
   width: 6rem;
@@ -395,6 +396,8 @@ header {
   justify-content: space-between;
   padding: 1rem 1rem;
   background-color: #283e4a;
+  z-index: 1;
+  /* used to prevent scale property in userCard to overlap header */
 }
 header .logo {
   width: 9rem;
