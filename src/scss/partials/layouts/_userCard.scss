@@ -1,0 +1,26 @@
+.userCard {
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    background-color: white;
+    &:hover {
+        cursor: pointer;
+        background-color: red;
+        transition: transform 0.2s ease-in-out, opacity 0.1s ease-in;
+    }
+    .userImg {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+    }
+    .userName {
+        color: rgba(0, 0, 0, 0.9);
+        font-size: 1.8rem;
+    }
+    .userCompany {
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.6);
+    }
+}

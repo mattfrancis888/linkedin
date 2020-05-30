@@ -359,6 +359,33 @@ body {
   font: 1.1rem helvetica, arial, sans-serif;
 }
 
+.userCard {
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  background-color: white;
+}
+.userCard:hover {
+  cursor: pointer;
+  background-color: red;
+  transition: transform 0.2s ease-in-out, opacity 0.1s ease-in;
+}
+.userCard .userImg {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+.userCard .userName {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.8rem;
+}
+.userCard .userCompany {
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+}
+
 header {
   position: fixed;
   top: 0;
@@ -372,6 +399,34 @@ header {
 header .logo {
   width: 9rem;
   height: 3rem;
+}
+
+.checkOutProfileTitle {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 2rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.homeContainer {
+  width: 100%;
+  padding: 10rem;
+}
+
+.userContainer {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 768px) {
+  .userContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 992px) {
+  .userContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

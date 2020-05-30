@@ -1,0 +1,21 @@
+.checkOutProfileTitle {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 2rem;
+    line-height: 1.4;
+    font-weight: 400;
+}
+.homeContainer {
+    width: 100%;
+    padding: 10rem;
+}
+.userContainer {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+    @media screen and (min-width: $md_breakpoint) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: $lg_breakpoint) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
