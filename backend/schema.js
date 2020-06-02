@@ -30,7 +30,21 @@ const UserType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLString },
         firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
         age: { type: GraphQLInt },
+        company: {
+            type: CompanyType,
+            resolve(parentValue, args) {
+                //parentValue is the result returned from the axios call
+                //make sure to query this property eg; user(id:"23"){company{id}}
+                console.log(parentValue);
+                return axios
+                    .get(
+                        `http://localhost:3000/companies/${parentValue.companyId}`
+                    )
+                    .then((response) => response.data);
+            },
+        },
     }),
 });
 
