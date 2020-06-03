@@ -359,6 +359,34 @@ body {
   font: 1.1rem helvetica, arial, sans-serif;
 }
 
+.userCard {
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  background-color: white;
+}
+.userCard:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out, opacity 0.1s ease-in;
+  transform: scale(1.1);
+}
+.userCard .userImg {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+.userCard .userName {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.8rem;
+}
+.userCard .userCompany {
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+}
+
 header {
   position: fixed;
   top: 0;
@@ -368,10 +396,77 @@ header {
   justify-content: space-between;
   padding: 1rem 1rem;
   background-color: #283e4a;
+  z-index: 1;
+  /* used to prevent scale property in userCard to overlap header */
 }
 header .logo {
   width: 9rem;
   height: 3rem;
+}
+
+.homeContainer {
+  width: 100%;
+  padding: 10rem;
+}
+
+.checkOutProfileTitle {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 2rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.homeTitleAndButtonWrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .homeTitleAndButtonWrap {
+    margin-bottom: 2rem;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.userContainer {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 768px) {
+  .userContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 992px) {
+  .userContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.createProfileButton {
+  background-color: #0073b1;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.1rem 1.2rem;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 167ms;
+}
+.createProfileButton:hover {
+  background-color: #004b7c;
+}
+.createProfileButton h1 {
+  font-size: 1.4rem;
+}
+@media screen and (min-width: 768px) {
+  .createProfileButton h1 {
+    font-size: 1.5rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
