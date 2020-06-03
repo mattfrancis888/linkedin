@@ -46,14 +46,20 @@ const Home = (props) => {
         } else {
             return (
                 <div className="homeContainer">
-                    <h1 className="checkOutProfileTitle">
-                        Check out these profiles:
-                    </h1>
+                    <div className="homeTitleAndButtonWrap">
+                        <h1 className="checkOutProfileTitle">
+                            Check out these profiles:
+                        </h1>
+                        <button className="createProfileButton">
+                            <h1>Create Your Profile</h1>
+                        </button>
+                    </div>
                     <div className="userContainer">{renderProfiles()}</div>
                 </div>
             );
         }
     };
+
     return <React.Fragment>{renderContent()}</React.Fragment>;
 };
 

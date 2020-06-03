@@ -1,12 +1,24 @@
+.homeContainer {
+    width: 100%;
+    padding: 10rem;
+}
+
 .checkOutProfileTitle {
     color: rgba(0, 0, 0, 0.9);
     font-size: 2rem;
     line-height: 1.4;
     font-weight: 400;
 }
-.homeContainer {
-    width: 100%;
-    padding: 10rem;
+.homeTitleAndButtonWrap {
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $md_breakpoint) {
+        margin-bottom: 2rem;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    margin-bottom: 1rem;
 }
 .userContainer {
     display: grid;
@@ -17,5 +29,26 @@
     }
     @media screen and (min-width: $lg_breakpoint) {
         grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.createProfileButton {
+    background-color: $light-blue;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.1rem 1.2rem;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 167ms;
+    &:hover {
+        background-color: #004b7c;
+    }
+    h1 {
+        font-size: 1.4rem;
+        @media screen and (min-width: $md_breakpoint) {
+            font-size: 1.5rem;
+        }
     }
 }
