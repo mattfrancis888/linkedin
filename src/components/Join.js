@@ -3,6 +3,7 @@ import register from "../img/register-pic.svg";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import { useHistory } from "react-router";
+import getUsersQuery from "../queries/getUsers";
 const CreateProfile = (props) => {
     const history = useHistory();
     const [firstName, setFirstName] = useState("");
@@ -11,16 +12,30 @@ const CreateProfile = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        //Unlike redux/REST when we go back to history.push("/") after the mutaitonn
+        //If we have fetched data at the home page, unlike redux/REST when we go back to history.push("/") after the mutaitonn
         //GraphQL does not automatically re-fetch the list of data agian
+
+        //For example, if you went to the home page and then go to the join page
+        //Then click the join button (which will return you to the home page)
+        //graphql will not re-fetch the queries at the home page again, so you see
+        //no new data updated
         await props.mutate({
             variables: {
                 firstName: "Obiwan",
                 lastName: "Kenobi",
                 company: "Google",
             },
+            refetchQueries: [{ query: getUsersQuery }],
+            //Note: if we needed to add variables tot he refetchQueries, we can do:
+            //refetchQueries: [{ query: getUsersQuery, variables }],
+
+            //To solve the problem above
+            //refetchQueries will call the query after mutate is executed
+            // it will tell the other components, like Home (who uses the same query)
+            //that they do not need to execute the query again
+            //because it is already executed here
         });
-        history.push("/");
+        //history.push("/");
         console.log(firstName);
     };
 

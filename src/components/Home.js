@@ -5,16 +5,8 @@ import faker from "faker";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import { useHistory } from "react-router";
-const PROFILE_INFO = gql`
-    {
-        users {
-            id
-            firstName
-            lastName
-            company
-        }
-    }
-`;
+import getUsersQuery from "../queries/getUsers";
+
 //gql query will appear in props; much like redux reducers!
 const Home = (props) => {
     const history = useHistory();
@@ -67,4 +59,4 @@ const Home = (props) => {
 };
 
 //query is automatically called if it's passed here; result will be in props.data
-export default graphql(PROFILE_INFO)(Home);
+export default graphql(getUsersQuery)(Home);
