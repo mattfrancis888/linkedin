@@ -510,6 +510,18 @@ header .logo {
     padding: 1rem;
   }
 }
+.joinForm .errorText {
+  margin: 0;
+  margin-bottom: 1rem;
+  color: red;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+@media screen and (min-width: 768px) {
+  .joinForm .errorText {
+    font-size: 1.5rem;
+  }
+}
 
 .joinImg {
   margin: 0 auto;
