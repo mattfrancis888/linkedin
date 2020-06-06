@@ -469,4 +469,84 @@ header .logo {
   }
 }
 
+.joinContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 8rem;
+}
+@media screen and (min-width: 768px) {
+  .joinContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.joinForm {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  line-height: 1.4;
+  font-weight: 400;
+  margin-bottom: 5rem;
+}
+@media screen and (min-width: 768px) {
+  .joinForm {
+    width: 90%;
+    margin-right: 5rem;
+  }
+}
+.joinForm label {
+  margin-bottom: 1rem;
+}
+.joinForm input {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+@media screen and (min-width: 992px) {
+  .joinForm input {
+    padding: 1rem;
+  }
+}
+.joinForm .errorText {
+  margin: 0;
+  margin-bottom: 1rem;
+  color: red;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+@media screen and (min-width: 768px) {
+  .joinForm .errorText {
+    font-size: 1.5rem;
+  }
+}
+
+.joinImg {
+  margin: 0 auto;
+  width: 35rem;
+  height: 35rem;
+}
+@media screen and (min-width: 768px) {
+  .joinImg {
+    width: 55rem;
+    height: 45rem;
+  }
+}
+
+.joinButton {
+  background-color: #0073b1;
+  color: white;
+  border: none;
+  padding: 1rem;
+  margin-top: 2rem;
+  padding: 0.5rem;
+}
+@media screen and (min-width: 992px) {
+  .joinButton {
+    padding: 1rem;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */

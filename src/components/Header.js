@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../img/logo.png";
 import { Link } from "react-router-dom";
-const Home = () => {
+const Header = () => {
     return (
         <header>
             <div>
@@ -12,4 +12,4 @@ const Home = () => {
         </header>
     );
 };
-export default Home;
+export default Header;

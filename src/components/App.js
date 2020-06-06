@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Router } from "react-router-dom";
 import Header from "./Header";
 import Home from "./Home";
+import Join from "./Join";
 import history from "../history";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -20,6 +21,7 @@ function App() {
                 <Router history={history}>
                     <Header />
                     <Route path="/" exact component={Home} />
+                    <Route path="/join" exact component={Join} />
                 </Router>
             </React.Fragment>
         </ApolloProvider>

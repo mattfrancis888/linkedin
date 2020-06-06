@@ -4,24 +4,16 @@ import faker from "faker";
 // import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+import { useHistory } from "react-router";
+import getUsersQuery from "../queries/getUsers";
 
-const PROFILE_INFO = gql`
-    {
-        users {
-            id
-            firstName
-            lastName
-            company {
-                name
-            }
-        }
-    }
-`;
 //gql query will appear in props; much like redux reducers!
 const Home = (props) => {
+    const history = useHistory();
     // const { loading, error, data } = useQuery(PROFILE_INFO);
     const renderProfiles = () => {
         //render porfile after props.data.loading === false
+        console.log(props.data.users);
         return props.data.users.map((user) => {
             return (
                 <div className="userCard" key={user.id}>
@@ -34,7 +26,7 @@ const Home = (props) => {
                         {`${user.firstName} ${user.lastName}`}
                     </h1>
                     <h2 className="userCompany">
-                        {`Working at: ${user.company.name}`}
+                        {`Working at: ${user.company}`}
                     </h2>
                 </div>
             );
@@ -50,7 +42,10 @@ const Home = (props) => {
                         <h1 className="checkOutProfileTitle">
                             Check out these profiles:
                         </h1>
-                        <button className="createProfileButton">
+                        <button
+                            className="createProfileButton"
+                            onClick={() => history.push("/join")}
+                        >
                             <h1>Create Your Profile</h1>
                         </button>
                     </div>
@@ -63,5 +58,5 @@ const Home = (props) => {
     return <React.Fragment>{renderContent()}</React.Fragment>;
 };
 
-//query is automatically called if it's passed here
-export default graphql(PROFILE_INFO)(Home);
+//query is automatically called if it's passed here; result will be in props.data
+export default graphql(getUsersQuery)(Home);
