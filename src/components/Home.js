@@ -13,7 +13,7 @@ const Home = (props) => {
     // const { loading, error, data } = useQuery(PROFILE_INFO);
     const renderProfiles = () => {
         //render porfile after props.data.loading === false
-        console.log(props.data.users);
+
         return props.data.users.map((user) => {
             return (
                 <div className="userCard" key={user.id}>
@@ -37,7 +37,7 @@ const Home = (props) => {
             return <div>Loading...</div>;
         } else {
             return (
-                <div className="homeContainer">
+                <div className="contentContainer">
                     <div className="homeTitleAndButtonWrap">
                         <h1 className="checkOutProfileTitle">
                             Check out these profiles:

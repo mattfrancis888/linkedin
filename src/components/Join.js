@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import register from "../img/register-pic.svg";
+import registerPic from "../img/register-pic.svg";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import { useHistory } from "react-router";
@@ -59,7 +59,7 @@ const CreateProfile = (props) => {
         if (!values.companyNameInput) {
             errors.companyNameInput = "Company Name is required";
         }
-        console.log(errors);
+        // console.log(errors);
         return errors;
     };
 
@@ -118,7 +118,7 @@ const CreateProfile = (props) => {
                     </button>
                 </form>
 
-                {<img className="joinImg" src={register} alt="register" />}
+                {<img className="joinImg" src={registerPic} alt="register" />}
             </div>
         </React.Fragment>
     );
