@@ -404,7 +404,7 @@ header .logo {
   height: 3rem;
 }
 
-.homeContainer {
+.contentContainer {
   width: 100%;
   padding: 10rem;
 }
@@ -550,7 +550,6 @@ header .logo {
 }
 
 .userProfileContainer {
-  border: 1px solid red;
   width: 100%;
   padding: 10rem 1rem;
 }
@@ -577,7 +576,7 @@ header .logo {
     height: 20rem;
   }
 }
-.userProfileCard .userProfilePicContainer {
+.userProfileCard .userProfilePic {
   position: absolute;
   left: 2rem;
   top: 50%;
@@ -585,11 +584,10 @@ header .logo {
   width: 13rem;
   height: 13rem;
   border-radius: 50%;
-  border: 1px solid red;
-  background-color: transparent;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
 }
 @media screen and (min-width: 992px) {
-  .userProfileCard .userProfilePicContainer {
+  .userProfileCard .userProfilePic {
     width: 15rem;
     height: 15rem;
   }

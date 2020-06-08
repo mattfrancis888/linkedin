@@ -16,7 +16,11 @@ const Home = (props) => {
 
         return props.data.users.map((user) => {
             return (
-                <div className="userCard" key={user.id}>
+                <div
+                    onClick={() => history.push(`/user/${user.id}`)}
+                    className="userCard"
+                    key={user.id}
+                >
                     <img
                         className="userImg"
                         src={faker.image.avatar()}

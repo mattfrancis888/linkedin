@@ -8,6 +8,7 @@ const {
     GraphQLSchema,
     GraphQLList,
     GraphQLNonNull,
+    GraphQLID,
 } = graphql;
 
 const UserType = new GraphQLObjectType({
@@ -52,7 +53,7 @@ const RootQuery = new GraphQLObjectType({
         },
         user: {
             type: UserType, //needed so you access user userType properties
-            args: { id: { type: GraphQLString } },
+            args: { id: { type: GraphQLID } },
 
             resolve(parentValue, args) {
                 return axios

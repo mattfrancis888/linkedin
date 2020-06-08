@@ -1,7 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useQuery } from "@apollo/react-hooks";
 import userProfileBackground from "../img/userprofile-bg.svg";
-const User = () => {
+import getUserQuery from "../queries/getUser";
+import faker from "faker";
+const User = (props) => {
+    const { loading, error, data } = useQuery(getUserQuery, {
+        variables: { id: props.match.params.id },
+    });
+    if (error) return `Error! ${error.message}`;
+    if (loading) return "Loading...";
+
     return (
         <div className="userProfileContainer">
             <div className="userProfileCard">
@@ -11,14 +19,26 @@ const User = () => {
                         backgroundImage: `url(${userProfileBackground})`,
                         backgroundSize: "cover",
                     }}
+                    //Used style because this svg maintans raito and can't be manipulated with
+                    //certain width/height property
                 ></div>
-                <div className="userProfilePicContainer"></div>
+
+                <img
+                    className="userProfilePic"
+                    src={faker.image.avatar()}
+                    alt="user pic"
+                ></img>
+
                 <div className="userProfileInfoWrap">
-                    <h1 className="userProfileName">First Name + last name</h1>
-                    <h2 className="userProfileCompany">Company</h2>
+                    <h1 className="userProfileName">
+                        {`${data.user.firstName} ${data.user.lastName}`}
+                    </h1>
+                    <h2 className="userProfileCompany">{`Working at: ${data.user.company}`}</h2>
                 </div>
             </div>
         </div>
     );
 };
+//props first go to graphql helper then the props is passed along to the user
 export default User;
+//the result of the getUserQuery would now appear in User's props

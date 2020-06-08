@@ -23,7 +23,7 @@ function App() {
                     <Header />
                     <Route path="/" exact component={Home} />
                     <Route path="/join" exact component={Join} />
-                    <Route path="/user" exact component={User} />
+                    <Route path="/user/:id" exact component={User} />
                 </Router>
             </React.Fragment>
         </ApolloProvider>
