@@ -400,11 +400,27 @@ header {
   /* used to prevent scale property in userCard to overlap header */
 }
 header .logo {
-  width: 9rem;
-  height: 3rem;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
-.homeContainer {
+.loadingCenter {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.queryErrorMessage {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 1.6rem;
+}
+
+.contentContainer {
   width: 100%;
   padding: 10rem;
 }
@@ -547,6 +563,64 @@ header .logo {
   .joinButton {
     padding: 1rem;
   }
+}
+
+.userProfileContainer {
+  width: 100%;
+  padding: 10rem 1rem;
+}
+@media screen and (min-width: 768px) {
+  .userProfileContainer {
+    padding: 10rem 3rem;
+  }
+}
+
+.userProfileCard {
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
+}
+.userProfileCard .userProfileBackground {
+  width: 100%;
+  height: 17rem;
+}
+@media screen and (min-width: 992px) {
+  .userProfileCard .userProfileBackground {
+    height: 20rem;
+  }
+}
+.userProfileCard .userProfilePic {
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13rem;
+  height: 13rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
+}
+@media screen and (min-width: 992px) {
+  .userProfileCard .userProfilePic {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+.userProfileInfoWrap {
+  padding: 8rem 2rem 2rem 2rem;
+}
+.userProfileInfoWrap .userProfileName {
+  font-size: 2.4rem;
+  line-height: 1.33333;
+  font-weight: 400;
+}
+.userProfileInfoWrap .userProfileCompany {
+  font-size: 1.8rem;
+  line-height: 1.33333;
+  font-weight: 400;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import register from "../img/register-pic.svg";
+import React, { useEffect, useState } from "react";
+import registerPic from "../img/register-pic.svg";
 import { gql } from "apollo-boost";
-import { graphql } from "react-apollo";
 import { useHistory } from "react-router";
 import getUsersQuery from "../queries/getUsers";
-const CreateProfile = (props) => {
+import { useMutation } from "@apollo/react-hooks";
+const CreateProfile = () => {
     const history = useHistory();
     //Inputs
     const [values, setValues] = useState({});
@@ -15,6 +15,8 @@ const CreateProfile = (props) => {
     //Button functionality
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const [addUser] = useMutation(mutation);
+
     const addUserToDatabase = async () => {
         //If we have fetched data at the home page, unlike redux/REST when we go back to history.push("/") after the mutaitonn
         //GraphQL does not automatically re-fetch the list of data agian
@@ -23,14 +25,14 @@ const CreateProfile = (props) => {
         //Then click the join button (which will return you to the home page)
         //graphql will not re-fetch the queries at the home page again, so you see
         //no new data updated
-        await props.mutate({
+        await addUser({
             variables: {
                 firstName: values.firstNameInput,
                 lastName: values.lastNameInput,
                 company: values.companyNameInput,
             },
             refetchQueries: [{ query: getUsersQuery }],
-            //Note: if we needed to add variables tot he refetchQueries, we can do:
+            //Note: if we needed to add variables to the refetchQueries, we can do:
             //refetchQueries: [{ query: getUsersQuery, variables }],
 
             //To solve the problem above
@@ -59,7 +61,7 @@ const CreateProfile = (props) => {
         if (!values.companyNameInput) {
             errors.companyNameInput = "Company Name is required";
         }
-        console.log(errors);
+        // console.log(errors);
         return errors;
     };
 
@@ -118,7 +120,7 @@ const CreateProfile = (props) => {
                     </button>
                 </form>
 
-                {<img className="joinImg" src={register} alt="register" />}
+                {<img className="joinImg" src={registerPic} alt="register" />}
             </div>
         </React.Fragment>
     );
@@ -138,4 +140,4 @@ const mutation = gql`
 `;
 
 //query is automatically called if it's passed here; result will be in props.data
-export default graphql(mutation)(CreateProfile);
+export default CreateProfile;

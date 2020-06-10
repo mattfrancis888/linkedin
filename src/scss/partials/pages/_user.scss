@@ -1,0 +1,53 @@
+.userProfileContainer {
+    width: 100%;
+    padding: 10rem 1rem;
+    @media screen and (min-width: $md_breakpoint) {
+        padding: 10rem 3rem;
+    }
+}
+.userProfileCard {
+    overflow: hidden;
+    position: relative;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15),
+        0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.2rem;
+    .userProfileBackground {
+        width: 100%;
+        height: 17rem;
+        @media screen and (min-width: $lg_breakpoint) {
+            height: 20rem;
+        }
+    }
+    .userProfilePic {
+        position: absolute;
+        left: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 13rem;
+        height: 13rem;
+        @media screen and (min-width: $lg_breakpoint) {
+            width: 15rem;
+            height: 15rem;
+        }
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15),
+            0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
+    }
+}
+
+.userProfileInfoWrap {
+    padding: 8rem 2rem 2rem 2rem;
+
+    .userProfileName {
+        font-size: 2.4rem;
+        line-height: 1.33333;
+        font-weight: 400;
+    }
+    .userProfileCompany {
+        font-size: 1.8rem;
+        line-height: 1.33333;
+        font-weight: 400;
+    }
+}
