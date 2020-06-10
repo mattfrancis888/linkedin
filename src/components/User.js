@@ -3,12 +3,19 @@ import { useQuery } from "@apollo/react-hooks";
 import userProfileBackground from "../img/userprofile-bg.svg";
 import getUserQuery from "../queries/getUser";
 import faker from "faker";
+import Loading from "./Loading";
 const User = (props) => {
     const { loading, error, data } = useQuery(getUserQuery, {
         variables: { id: props.match.params.id },
     });
     if (error) return `Error! ${error.message}`;
-    if (loading) return "Loading...";
+    if (loading) {
+        return (
+            <div className="loadingCenter">
+                <Loading />
+            </div>
+        );
+    }
 
     return (
         <div className="userProfileContainer">

@@ -400,8 +400,24 @@ header {
   /* used to prevent scale property in userCard to overlap header */
 }
 header .logo {
-  width: 9rem;
-  height: 3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.loadingCenter {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.queryErrorMessage {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 1.6rem;
 }
 
 .contentContainer {

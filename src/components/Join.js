@@ -15,7 +15,7 @@ const CreateProfile = () => {
     //Button functionality
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [addUser, { data }] = useMutation(mutation);
+    const [addUser] = useMutation(mutation);
 
     const addUserToDatabase = async () => {
         //If we have fetched data at the home page, unlike redux/REST when we go back to history.push("/") after the mutaitonn

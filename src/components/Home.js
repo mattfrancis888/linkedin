@@ -6,13 +6,24 @@ import { useQuery } from "@apollo/react-hooks";
 import { graphql } from "react-apollo";
 import { useHistory } from "react-router";
 import getUsersQuery from "../queries/getUsers";
+import Loading from "./Loading";
 
 //gql query will appear in props; much like redux reducers!
 const Home = () => {
     const history = useHistory();
     const { loading, error, data } = useQuery(getUsersQuery);
-    if (error) return `Error! ${error.message}`;
-    if (loading) return "Loading...";
+    if (error)
+        return (
+            <h1 className="queryErrorMessage">{`Error: ${error.message}`}</h1>
+        );
+    if (loading) {
+        return (
+            <div className="loadingCenter">
+                <Loading />
+            </div>
+        );
+    }
+
     const renderProfiles = () => {
         //render porfile after props.data.loading === false
 
