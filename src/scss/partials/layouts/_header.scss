@@ -1,0 +1,17 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    // align-items: center;
+    padding: 1rem 1rem;
+    background-color: #283e4a;
+    .logo {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+    z-index: 1;
+    /* used to prevent scale property in userCard to overlap header */
+}
