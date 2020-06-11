@@ -1,68 +1,115 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Linkedin
 
-## Available Scripts
+Linkedin-like site where users can see other user's profiles and see what companies they work for. The user can also create their profile.
 
-In the project directory, you can run:
+Developed with React, GraphQL, Express/Node.js, JS, HTML, CSS, [JSON-server for a JSON database and a server/API for REST requests](https://github.com/typicode/json-server)
 
-### `npm start`
+For storage purposes, all data created will be stored temporarily in the database then it'll be automatically deleted after a certain amount of time.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To keep the project simple, avoided storing images in the database. Thus, used faker API to randomly generate profile pictures.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# Why I Built It and What I've Learned:
 
-### `npm test`
+-   To understand how GraphQL is more suitable than RESTful Routing in certain cases.
+-   To understand how Apollo "glues" React and GraphQL together. Apollo allows us to fetch data from our GraphQL server and implement it in React
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*   In the project, we stopped at `users/id` but the intent of using GraphQL to avoid complicated REST routes while being able to get the data remains the same.
 
-### `npm run build`
+## GraphQL:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   GrpahQL solves problems where different types of "data" is strongly related to each other, thus creating complicated/unconventional routes. For example,
+    `users/1/friends/companies` would be a complicated REST route; `users/1/`friends_companies_and_position` would be a very specific REST route that breaks REST conventions due to the route getting more than 1 type of data after a "/". A solution to both would be to use GraphQL, by doing so we could get the data while maintaining a simple URL route.
+-   GraphQL applies to both a relational and a NoSQL database. In the NoSQL approach, building a poorly designed route such as `users/1/friends/companies` is achievable by creating this structure in `JSON-Server's db.json` database:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Samantha",
+      "lastName": "Skywalker",
+      "company": "Apple,
+      friends:[
+           {
+            "id": "2",
+            "firstName": "Nick",
+            "lastName": "Bartell",
+            "age": 40,
+            "company": "Google"
+           },
+           .... other friends
+      ]
+    },
+    .... other users
+    ]
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   Schemas are built so that we could make GraphQL commands.
+-   GUI interface of GraphQL for testing GraphQL commands is generated in "/graphql" route.
+-   `RootQueries` is used for the GET HTTP Method.
+-   `Mutations` is used for PUT/POST/DELETE/PATCH HTTP Methods.
+-   GraphQL allows us to decide what data we want to fetch. We don't need to fetch all the data. For example, using the above JSON data, we could create this GraphQL command to only get the firstName of users:
+    ```
+    {
+         users {
+             firstName
+         }
+     }
+    ```
 
-### `npm run eject`
+## Apollo:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-   GraphQL command queries should be stored and exported at their own files for reusability. For example, it is reusable with `refetchQueries`.
+-   GraphQL command queries are called in a component with `const { loading, error, data } = useQuery(GQL_QUERY);`.
+-   GraphQL command mutations are called in a component with `const [addUser] = useMutation(GQL_MUTATION);`.
+-   When a mutation is finished, it is often accompanied by `refetchQueries` to update the component with the new data. It will execute any query in `refetchQuery` after the mutation is completed. This is done because after GraphQL initially calls a query, it will not call the query again until you refresh the page or `refetchQuery` is called. GraphQL is also smart enough to realize that the query should be called once; after `refetchQuery`, any other sources calling the query will be ignored.
+-   A relevant idea to `refetchQueries`/updating the component with new data is `dataIdFromObject`, where you are updating your cache with newly added data to another data that has a unique id.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+    const client = new ApolloClient({
+    ...,
+    cache: new InMemoryCache({
+    ...,
+    dataIdFromObject: object => object.id,
+    }),
+    });
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## External resources:
 
-## Learn More
+-   Faker to generate random user profile pictures.
+-   Prettier to format code and EsLint for linting.
+-   JSON-server for a local database.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## What It Looks Like
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="readme_img/home_animate.gif" height="350"/>
+<img src="readme_img/home_large.png" height="450"/>
+<img src="readme_img/home_small.png" width="350"/>
+<img src="readme_img/join_large.png" height="400"/>
+<img src="readme_img/join_small.png" width="450"/>
+<img src="readme_img/loading.gif" height="450"/>
 
-### Code Splitting
+# Getting Started
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Analyzing the Bundle Size
+1. Clone the project. Use `npm install` to install all the dependencies. Run the project with `npm start` for development or `npm run build` for production.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+2. OPTIONAL: If you want to make changes locally, on the terminal, go to the `backend` directory. Type `start:json` to start the local JSON-server server/API which will connect the front-end to the database. Type `node run dev` to start the local GraphQL server, `server.js`.
 
-### Making a Progressive Web App
+# Prerequisites
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+What things you need to install the software
 
-### Advanced Configuration
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+-   Any package manager (npm, yarn)
 
-### Deployment
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+# Versioning
 
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+None
