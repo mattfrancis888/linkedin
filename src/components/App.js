@@ -11,7 +11,8 @@ import { ApolloProvider } from "@apollo/react-hooks";
 //Apollo-client gets the data from the server and stores it locally
 //react-apollo is what glues react and apollo together
 const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    // uri: "http://localhost:4000/graphql",
+    uri: "https://linkedin-backend.now.sh/graphql",
 });
 //empty param assumes the graphql server is on /grapql route
 

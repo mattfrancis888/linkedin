@@ -394,7 +394,7 @@ header {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 1rem 3rem;
   background-color: #283e4a;
   z-index: 1;
   /* used to prevent scale property in userCard to overlap header */
@@ -558,6 +558,7 @@ header .logo {
   padding: 1rem;
   margin-top: 2rem;
   padding: 0.5rem;
+  cursor: pointer;
 }
 @media screen and (min-width: 992px) {
   .joinButton {

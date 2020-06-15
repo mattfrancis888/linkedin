@@ -1,6 +1,5 @@
 const graphql = require("graphql");
-const axios = require("axios");
-
+const axiosConfig = require("./axiosConfig");
 const {
     GraphQLObjectType,
     GraphQLString,
@@ -46,8 +45,8 @@ const RootQuery = new GraphQLObjectType({
         users: {
             type: new GraphQLList(UserType),
             resolve() {
-                return axios
-                    .get("http://localhost:3000/users")
+                return axiosConfig
+                    .get("/users")
                     .then((response) => response.data);
             },
         },
@@ -56,8 +55,8 @@ const RootQuery = new GraphQLObjectType({
             args: { id: { type: GraphQLID } },
 
             resolve(parentValue, args) {
-                return axios
-                    .get(`http://localhost:3000/users/${args.id}`)
+                return axiosConfig
+                    .get(`/users/${args.id}`)
                     .then((response) => response.data);
             },
         },
@@ -86,13 +85,15 @@ const mutation = new GraphQLObjectType({
                 company: { type: new GraphQLNonNull(GraphQLString) },
             },
             resolve(parentValue, { firstName, lastName, company }) {
-                return axios
-                    .post(`http://localhost:3000/users`, {
+                return axiosConfig
+                    .post(`/users`, {
                         firstName,
                         lastName,
                         company,
                     })
                     .then((response) => response.data);
+                //GraphQL creates an id of random string rather than a number
+                //like Redux/REST
             },
         },
     },

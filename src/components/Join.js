@@ -25,22 +25,39 @@ const CreateProfile = () => {
         //Then click the join button (which will return you to the home page)
         //graphql will not re-fetch the queries at the home page again, so you see
         //no new data updated
-        await addUser({
-            variables: {
-                firstName: values.firstNameInput,
-                lastName: values.lastNameInput,
-                company: values.companyNameInput,
-            },
-            refetchQueries: [{ query: getUsersQuery }],
-            //Note: if we needed to add variables to the refetchQueries, we can do:
-            //refetchQueries: [{ query: getUsersQuery, variables }],
 
-            //To solve the problem above
-            //refetchQueries will call the query after mutate is executed
-            // it will tell the other components, like Home (who uses the same query)
-            //that they do not need to execute the query again
-            //because it is already executed here
-        });
+        try {
+            await addUser({
+                variables: {
+                    firstName: values.firstNameInput,
+                    lastName: values.lastNameInput,
+                    company: values.companyNameInput,
+                },
+                //awaitRefetchQueries: true,
+                //Usage of awaitRefetchQueries: Queries refetched as part of refetchQueries are handled asynchronously, and are not waited on before the mutation is completed (resolved). Setting this to true will make sure refetched queries are
+                //completed before the mutation is considered done. false by default.”
+                //This will prevent memory leaks when you go back to Home page
+                //because the query in Home would not be called AGAIN after refetchQueries
+                //But as of now, this is not working due to a bug in Apollo
+                //https://github.com/apollographql/react-apollo/issues/2267
+
+                refetchQueries: [{ query: getUsersQuery }],
+
+                //Note: if we needed to add variables to the refetchQueries, we can do:
+                //refetchQueries: [{ query: getUsersQuery, variables }],
+
+                //To solve the problem above
+                //refetchQueries will call the query after mutate is executed
+                // it will tell the other components, like Home (who uses the same query)
+                //that they do not need to execute the query again
+                //because it is already executed here
+                //But as of Apolo v2.5, you need awaitRefetchQueries:true for this to happen
+            });
+        } catch (e) {
+            alert(e.message);
+            return;
+        }
+
         history.push("/");
     };
     useEffect(() => {

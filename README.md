@@ -2,7 +2,7 @@
 
 Linkedin-like site where users can see other user's profiles and see what companies they work for. The user can also create their profile.
 
-Developed with React, GraphQL, Express/Node.js, JS, HTML, CSS, [JSON-server for a JSON database and a server/API for REST requests](https://github.com/typicode/json-server)
+Developed with React, GraphQL, Apollo (v2.6), Express/Node.js, JS, HTML, CSS, [JSON-server for a JSON database and a server/API for REST requests](https://github.com/typicode/json-server)
 
 For storage purposes, all data created will be stored temporarily in the database then it'll be automatically deleted after a certain amount of time.
 
@@ -12,8 +12,7 @@ To keep the project simple, avoided storing images in the database. Thus, used f
 
 -   To understand how GraphQL is more suitable than RESTful Routing in certain cases.
 -   To understand how Apollo "glues" React and GraphQL together. Apollo allows us to fetch data from our GraphQL server and implement it in React
-
-*   In the project, we stopped at `users/id` but the intent of using GraphQL to avoid complicated REST routes while being able to get the data remains the same.
+-   In the project, we stopped at `users/id` but the intent of using GraphQL to avoid complicated REST routes while being able to get the data remains.
 
 ## GraphQL:
 
@@ -98,7 +97,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the project. Use `npm install` to install all the dependencies. Run the project with `npm start` for development or `npm run build` for production.
 
-2. OPTIONAL: If you want to make changes locally, on the terminal, go to the `backend` directory. Type `start:json` to start the local JSON-server server/API which will connect the front-end to the database. Type `node run dev` to start the local GraphQL server, `server.js`.
+2. OPTIONAL: If you want to make changes locally, on the terminal, go to the `backend` directory. Type `start:json` to start the local JSON-server server/API which will connect the front-end to the database. Type `node run start` to start the local GraphQL server, `server.js`.
 
 # Prerequisites
 
