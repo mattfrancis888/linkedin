@@ -4,6 +4,7 @@ import { gql } from "apollo-boost";
 import { useHistory } from "react-router";
 import getUsersQuery from "../queries/getUsers";
 import { useMutation } from "@apollo/react-hooks";
+
 const CreateProfile = () => {
     const history = useHistory();
     //Inputs

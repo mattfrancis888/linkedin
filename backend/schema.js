@@ -1,5 +1,6 @@
 const graphql = require("graphql");
 const axiosConfig = require("./axiosConfig");
+const axios = require("axios");
 const {
     GraphQLObjectType,
     GraphQLString,
@@ -28,12 +29,22 @@ const UserType = new GraphQLObjectType({
         //         //make sure to query this property eg; user(id:"23"){company{id}}
         //         console.log(parentValue);
         //         return axios
-        //             .get(
-        //                 `http://localhost:3000/companies/${parentValue.companyId}`
-        //             )
+        //             .get(`http://localhost:4000/companies/${parentValue.id}`)
         //             .then((response) => response.data);
         //     },
         // },
+    }),
+});
+
+const CompanyType = new GraphQLObjectType({
+    name: "Company", //Just indicator that its an objector else code it wont recognize the object
+
+    //need to be wrapped in ()=>(); becuase javascript would execute this block after everything in the file has loaded
+    //this is because of how closures work.
+    fields: () => ({
+        id: { type: GraphQLString },
+
+        name: { type: GraphQLString },
     }),
 });
 
